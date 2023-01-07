@@ -1,5 +1,17 @@
 <%- include('header') -%>
 <div>
-    <p>Hello World!</p>
+    <% posts.forEach((post) => { %>
+    <div style="background-color: grey;">
+        <p>TOPIC</p>
+        <hr />
+        <p>IMAGE</p>
+        <h1>
+            <a href="<%= post.link %>"><%= post.title %></a>
+        </h1>
+        <p>By <%= post.author %> on <%= post.date %> </p>
+        <hr />
+        <p><%= post.type %></p>
+    </div>
+    <% }) %>
 </div>
 <%- include('footer') -%>
