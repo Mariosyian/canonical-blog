@@ -54,7 +54,7 @@ function extractCategoryName(post) {
             }
         })
     })
-    return categoryName
+    return categoryName ? categoryName : 'Uncategorised'
 }
 
 function extractTopicName(post) {
@@ -66,7 +66,7 @@ function extractTopicName(post) {
             }
         })
     })
-    return topicName
+    return topicName ? topicName : 'N/A'
 }
 
 function convertToDate(day, month, year, monthAsWord) {

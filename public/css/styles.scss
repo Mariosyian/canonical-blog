@@ -1,3 +1,18 @@
 @import "vanilla-framework";
 @include vanilla;
 
+hr {
+    border-top: 0.1rem dotted;
+}
+
+.bg-shadow {
+    box-shadow: 0 0 0.3rem black;
+}
+
+.breather {
+    margin: 1rem 0;
+}
+
+.italics {
+    font-style: italic;
+}
