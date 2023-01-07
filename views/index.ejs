@@ -1,16 +1,16 @@
 <%- include('header') -%>
 <div>
     <% posts.forEach((post) => { %>
-    <div style="background-color: grey;">
-        <p>TOPIC</p>
+    <div style='background-color: grey;'>
+        <p><%= post.topic %></p>
         <hr />
-        <p>IMAGE</p>
-        <h1>
-            <a href="<%= post.link %>"><%= post.title %></a>
-        </h1>
-        <p>By <%= post.author %> on <%= post.date %> </p>
+        <img src='<%= post.imageUrl %>' style="width: 20%;">
+        <h2>
+            <a href='<%= post.link %>'><%= post.title %></a>
+        </h2>
+        <p>By <a href="<%= post.authors[0].link %>"><%= post.authors[0].name %></a> on <%= post.date %></p>
         <hr />
-        <p><%= post.type %></p>
+        <p><%= post.category %></p>
     </div>
     <% }) %>
 </div>

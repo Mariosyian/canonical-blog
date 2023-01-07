@@ -4,6 +4,7 @@
     "description": "Take home assessment for Canonical Web Developer role",
     "main": "index.js",
     "scripts": {
+        "build-css": "sass -w --load-path=node_modules public/css:public/css --style=compressed",
         "start": "npm i && node index.js",
         "start:dev": "npx nodemon index.js",
         "test": "echo \"Not implemented\""
@@ -17,6 +18,7 @@
         "axios": "^1.2.2",
         "ejs": "^3.1.8",
         "express": "^4.18.2",
+        "sass": "^1.57.1",
         "vanilla-framework": "^3.9.0"
     },
     "devDependencies": {

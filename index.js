@@ -14,28 +14,60 @@ app.get('/', (req, res) => {
         .then((response) => {
             const posts = response.data.map((post) => {
                 return {
-                    'author': post.author,
+                    // TODO: Multiple authors?
+                    'authors': extractAuthors(post._embedded['author']),
                     'date': convertToDate(post._start_day, post._start_month, post._start_year, true),
+                    'imageUrl': post.featured_media,
                     'link': post.link,
                     'title': post.title.rendered,
-                    'type': post.type,
+                    'topic': extractTopicName(post).toUpperCase(),
+                    'category': extractCategoryName(post),
                 }
             })
             res.render('index', { posts })
         })
-        .catch((err) => {
-            console.log(`Error occured while fetching blog posts: ${err}`)
-            res.redirect('/error')
+        .catch((error) => {
+            console.log(`Error occured while fetching blog posts: ${error}`)
+            res.render('index', { error })
         })
-})
-
-app.get('/error', (res, req) => {
-    res.render('error')
 })
 
 app.listen(PORT, () => {
     console.log(`Server is live and listening at ${HOST}`)
 })
+
+function extractAuthors(authors) {
+    return authors.map((author) => {
+        return {
+            'name': author.name,
+            'link': author.link,
+        }
+    })
+}
+
+function extractCategoryName(post) {
+    let categoryName = '';
+    post.categories.map((categoryId) => {
+        return post._embedded['wp:term'].forEach((term) => {
+            if (term.length > 0 && term[0].taxonomy === 'category' && term[0].id === categoryId) {
+                categoryName = term[0].name
+            }
+        })
+    })
+    return categoryName
+}
+
+function extractTopicName(post) {
+    let topicName = '';
+    post.topic.map((topicId) => {
+        return post._embedded['wp:term'].forEach((term) => {
+            if (term.length > 0 && term[0].taxonomy === 'topic' && term[0].id === topicId) {
+                topicName = term[0].name
+            }
+        })
+    })
+    return topicName
+}
 
 function convertToDate(day, month, year, monthAsWord) {
     const dateMonth = monthAsWord ? convertMonthToWord(month) : month;
