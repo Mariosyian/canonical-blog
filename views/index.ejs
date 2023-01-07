@@ -1,19 +1,13 @@
 <%- include('header') -%>
 <% posts.forEach((post) => { %>
-<div class="p-card bg-shadow col-small-12 col-medium-2 col-4">
-    <p><%= post.topic %></p>
-    <hr />
-    <img src='<%= post.imageUrl %>' class="p-card__image">
-    <div class="">
-        <h3 class="p-card__content">
-            <a href='<%= post.link %>'><%= post.title %></a>
-        </h3>
-    </div>
-    <p class="italics">By <a href="<%= post.authors[0].link %>"><%= post.authors[0].name %></a> on <%= post.date %></p>
-    <div class="bottom">
+    <div class='p-card bg-color bg-shadow col-small-12 col-medium-2 col-4'>
+        <p><%= post.topic %></p>
+        <hr />
+        <img src='<%= post.imageUrl %>' class='p-card__image' alt='<%= post.title %>'>
+        <a class='p-card__content p-heading--3' href='<%= post.link %>'><%= post.title %></a>
+        <p class='italics'>By <a href='<%= post.authors[0].link %>'><%= post.authors[0].name %></a> on <%= post.date %></p>
         <hr />
         <p><%= post.category %></p>
     </div>
-</div>
 <% }) %>
 <%- include('footer') -%>

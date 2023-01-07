@@ -2,7 +2,13 @@
 @include vanilla;
 
 hr {
+    background-color: transparent;
     border-top: 0.1rem dotted;
+    margin-bottom: 1rem;
+}
+
+.bg-color {
+    border-top: 0.4rem solid purple;
 }
 
 .bg-shadow {
